@@ -1,21 +1,11 @@
-pipeline {
-    agent none
-    stages {
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3.8.1-adoptopenjdk-11' }
-            }
-            steps {
-                sh 'mvn --version'
-            }
-        }
-        stage('Front-end') {
-            agent {
-                docker { image 'node:14-alpine' }
-            }
-            steps {
-                sh 'node --version'
-            }
-        }
+node {  
+    stage('Build') { 
+        sh 'echo $(git rev-parse HEAD)' 
+    }
+    stage('Test') { 
+        sh 'echo "ok2"'
+    }
+    stage('Deploy') { 
+        sh 'echo "ok3"'
     }
 }
